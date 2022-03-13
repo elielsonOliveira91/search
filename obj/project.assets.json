@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pessoa\\Documents\\search\\search.csproj",
+      "projectUniqueName": "C:\\Users\\pessoa\\Desktop\\Workspace\\search\\search.csproj",
       "projectName": "search",
-      "projectPath": "C:\\Users\\pessoa\\Documents\\search\\search.csproj",
+      "projectPath": "C:\\Users\\pessoa\\Desktop\\Workspace\\search\\search.csproj",
       "packagesPath": "C:\\Users\\pessoa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pessoa\\Documents\\search\\obj\\",
+      "outputPath": "C:\\Users\\pessoa\\Desktop\\Workspace\\search\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pessoa\\AppData\\Roaming\\NuGet\\NuGet.Config"
