@@ -8,7 +8,7 @@ namespace arquivos
 	// Classe que manipula arquivos no programa
 	public static class Arquivos
     {
-        // Método que recebe um diretório como argumento e busca todos os arquivos
+        // Método que recebe um diretório como argumento e obtém todos os arquivos
         // contidos nesse diretório e em seus subdiretórios de maneira recursiva
         public static LinkedList<string> ObtemArquivos(string diretorio)
 		{
@@ -20,13 +20,13 @@ namespace arquivos
 				{
 					string[] arquivos = Directory.GetFiles(diretorio);           	// Obtém os arquivos do diretório atual 
 
-					if (subDiretorios != null)
+					if (subDiretorios != null)										// Se existem subdiretórios
 					{
 						// Laço que percorre o vetor de subdiretórios e obtém todos os arquivos desses subdiretórios
 						// Cada passo do loop executa o metodo ObtemArquivos com o subdiretorio como argumento e retorna uma lista
 						// com os arquivos nesse subdiretorio
 						for (int i = 0; i < subDiretorios.Length; i++)
-							listaDeArquivos.AddList(ObtemArquivos(subDiretorios[i]));	// Cada chamada retorna uma lista de arquivos que e concatenada a lista anterior
+							listaDeArquivos.AddList(ObtemArquivos(subDiretorios[i]));	// Cada chamada retorna uma lista de arquivos que será concatenada a lista anterior
 						
 						listaDeArquivos.AddList(List.ConvertToList(arquivos));          // Converte o vetor de arquivos numa lista e adiciona à lista já existente de arquivos
 					}
@@ -43,7 +43,7 @@ namespace arquivos
 					throw new ExcecaoDeArquivo();
 				}
             }
-            catch (UnauthorizedAccessException excGetDir)                         	// Exceção causada por erro na tentativa de acessar um diretório
+            catch (UnauthorizedAccessException excGetDir)                         	// Exceção de acesso restrito a um diretório
             {
                 try
                 {

@@ -10,7 +10,7 @@ o arquivo procurado.
 
 ## Compilação
 
-Dentro da pasta do programa compile o programa executando o comando.
+Dentro da pasta do programa compile o programa executando o seguinte comando.
 
 > dotnet build
 
@@ -18,7 +18,7 @@ Dentro da pasta do programa compile o programa executando o comando.
 
 A instalação e feita criando um local para os arquivos manualmente, por exemplo uma pasta C:\Program Files\Search
 e em seguida copiando todos os arquivos de execução presentes na pasta \bin do projeto para a pasta criada.
-Para executar o programa, deve-se adicionar o local dos executáveis a variável de ambiente do Windows PATH.
+Para executar o programa, deve-se adicionar o local dos executáveis  variável de ambiente do Windows PATH.
 
 ## Versão
 

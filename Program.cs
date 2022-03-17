@@ -9,8 +9,8 @@ namespace search
     {
         static void Main(string[] args)
         {
-			LinkedList<string> arquivosEncontrados = null;	// Cria uma lista para os arquivos encontrados
-            LinkedList<string> listaDeArquivos = null;    	// Cria uma lista para todos os arquivos no diretorio e subdiretorios
+			LinkedList<string> listaDeArquivos = null;    	// Cria uma lista para todos os arquivos obtidos no diretorio e subdiretorios
+			LinkedList<string> arquivosEncontrados = null;	// Cria uma lista para os arquivos que forem encontrados na busca
 			
             Console.WriteLine("Search versão 1.0.0");
 			Console.WriteLine("Uso:\nsearch <arquivo>");
@@ -24,7 +24,7 @@ namespace search
 				listaDeArquivos = Arquivos.ObtemArquivos(Directory.GetCurrentDirectory());	// Obtém todos os arquivos no diretório atual
 				
 				Console.WriteLine("Procurando...");
-				arquivosEncontrados = Arquivos.BuscaArquivos(args[0], listaDeArquivos);     // Procura pelos arquivo na lista de arquivos
+				arquivosEncontrados = Arquivos.BuscaArquivos(args[0], listaDeArquivos);     // Procura pelo arquivo na lista de arquivos
 				
 				Console.WriteLine();
 				for (int i = 0; i < arquivosEncontrados.Length(); i++)
