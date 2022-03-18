@@ -64,19 +64,14 @@ namespace arquivos
         public static LinkedList<string> BuscaArquivos(string arquivoProcurado, LinkedList<string> lista)
         {
             string caminhoDoArquivo;
-            LinkedList<string> arquivos = null;
-			
-			if(lista.Length() > 0)
+            LinkedList<string> arquivos = new LinkedList<string>();
+			for(int i = 0; i < lista.Length(); i++)                   	// Laço que percorre toda a lista em busca da ocorrencia no nome de arquivo procurado
 			{
-				arquivos = new LinkedList<string>();
-				for(int i = 0; i < lista.Length(); i++)                   	// Laço que percorre toda a lista em busca da ocorrencia no nome de arquivo procurado
-				{
-					caminhoDoArquivo = lista.GetItemIn(i);
-					if (caminhoDoArquivo.Contains(arquivoProcurado))      	// Cada caminho que contém o arquivo procurado é inserido na lista
-						arquivos.Add(caminhoDoArquivo);
-				}
+				caminhoDoArquivo = lista.GetItemIn(i);
+				if (caminhoDoArquivo.Contains(arquivoProcurado))      	// Cada caminho que contém o arquivo procurado é inserido na lista
+					arquivos.Add(caminhoDoArquivo);
 			}
-			return arquivos;                                              	// Retorna a lista com os caminhos que contém o arquivo
+			return arquivos;                                            // Retorna a lista com os caminhos que contém o arquivo
         }
 	}
 }

@@ -24,8 +24,7 @@ namespace search
 				listaDeArquivos = Arquivos.ObtemArquivos(Directory.GetCurrentDirectory());	// Obtém todos os arquivos no diretório atual
 				
 				Console.WriteLine("Procurando...");
-				arquivosEncontrados = Arquivos.BuscaArquivos(args[0], listaDeArquivos);     // Procura pelo arquivo na lista de arquivos
-				
+				arquivosEncontrados = Arquivos.BuscaArquivos(args[0], listaDeArquivos);
 				Console.WriteLine();
 				for (int i = 0; i < arquivosEncontrados.Length(); i++)
 				{
