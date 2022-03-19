@@ -9,7 +9,17 @@ namespace excecoes
 
         public ExcecaoDeArquivo()
         {
-            Mensagem = "[Erro] O nome de diretório pasado como argumento não é um caminho válido ou é longo demais ...";
+            Mensagem = "[Erro] Erro de arquivo ...";
+        }
+    } 
+	
+	class ExcecaoDeDiretorio : Exception
+    {
+        public string Mensagem;
+
+        public ExcecaoDeDiretorio()
+        {
+            Mensagem = "O nome de diretório pasado como argumento não existe ...";
         }
     }   
 }

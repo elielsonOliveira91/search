@@ -22,7 +22,7 @@ Para executar o programa, deve-se adicionar o local dos executáveis  variável 
 
 ## Versão
 
-v1.0
+v2.0.0
 
 ## Autor
 
