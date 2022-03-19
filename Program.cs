@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using linkedlist;
 using arquivos;
@@ -10,7 +10,7 @@ namespace search
     {
         static void Main(string[] args)
         {
-			bool flag = true;								// Valor booleano que indica se a busca por um arquivo sera f eita em subdiretorios
+			bool flag = true;								// Valor booleano que indica se a busca por um arquivo será feita em subdiretorios
 			string diretorio;								// Indica o diretorio alvo da busca
 			string arquivo;									// Arquivo a ser procurado
 			LinkedList<string> listaDeArquivos = null;    	// Cria uma lista para todos os arquivos obtidos no diretorio e subdiretorios
@@ -23,23 +23,28 @@ namespace search
 				
             Console.WriteLine();
 			if (args.Length > 1 && args.Length < 4)
-            {
-				// A opcao -ns diz ao programa fazer busca somente no diretorio e nao nos subdiretorios
+			{
+				// A opçao -ns diz ao programa para fazer busca somente no diretorio e nao nos subdiretorios
 				if(args[0] == "-ns")
 				{
-					flag = false;
+					flag = false;							// Flag false indica que a busca nao sera feita em subdiretorios
 					diretorio = args[1];
 					arquivo = args[2];
 					Console.WriteLine("Diretorio: {0}", diretorio);
 					Console.WriteLine("Arquivo procurado: {0}", arquivo);
 					Console.WriteLine("* Sem busca em subdiretorios...");
 				}
-				else
+				else if(args.Length == 2)
 				{
 					diretorio = args[0];
 					arquivo = args[1];
 					Console.WriteLine("Diretorio: {0}", diretorio);
 					Console.WriteLine("Arquivo procurado: {0}", arquivo);
+				}
+				else
+				{
+					Console.WriteLine("Opçao invalida.");
+					return;
 				}
 				
 				try{
@@ -47,9 +52,9 @@ namespace search
 					listaDeArquivos = Arquivos.ObtemArquivos(diretorio, flag);				// Obtém todos os arquivos no diretório
 					
 					Console.WriteLine("Procurando...");
-					arquivosEncontrados = Arquivos.BuscaArquivos(arquivo, listaDeArquivos);
+					arquivosEncontrados = Arquivos.BuscaArquivos(arquivo, listaDeArquivos);	// Procura pelo arquivo na lista de arquivos
 					Console.WriteLine();
-					for (int i = 0; i < arquivosEncontrados.Length(); i++)
+					for (int i = 0; i < arquivosEncontrados.Length(); i++)					// Laço que percorre a lista de arquivos encontrados
 					{
 						Console.WriteLine(arquivosEncontrados.GetItemIn(i));            	// Exibe todos os caminhos (path) onde o arquivo foi encontrado
 					}
@@ -68,12 +73,14 @@ namespace search
 					Console.WriteLine();
 					Console.WriteLine(e.Mensagem);
 				}
+				catch(ExcecaoDeAcesso e)
+				{
+					Console.WriteLine();
+					Console.WriteLine(e.Mensagem);
+				}
 			}
 			else
-			{
 				Console.WriteLine("Numero de argumentos invalido.");
-				Console.WriteLine("Uso: search [opçao] [local] [arquivo]\n");
-			}
         }
     }
 }

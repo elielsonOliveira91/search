@@ -19,7 +19,17 @@ namespace excecoes
 
         public ExcecaoDeDiretorio()
         {
-            Mensagem = "O nome de diretório pasado como argumento não existe ...";
+            Mensagem = "O nome de diretório passado como argumento não existe ...";
         }
-    }   
+    }  
+
+	class ExcecaoDeAcesso : Exception
+    {
+        public string Mensagem;
+
+        public ExcecaoDeAcesso()
+        {
+            Mensagem = "Acesso não autorizado a um diretório.";
+        }
+    }  	
 }
