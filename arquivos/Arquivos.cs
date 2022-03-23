@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using linkedlist;
+using listaligada;
 using excecoes;
 
 namespace arquivos
@@ -8,47 +8,58 @@ namespace arquivos
 	// Classe que manipula arquivos no programa
 	public static class Arquivos
     {
-        // Método que recebe um diretório como argumento e busca todos os arquivos
-        // contidos nesse diretório e em seus subdiretórios de maneira recursiva caso o argumento subs seja verdadeiro,
-		// caso contrario, a busca nao sera feita em subdiretorios
-        public static LinkedList<string> ObtemArquivos(string diretorio, bool subs)
+		private static bool acessonegado = false;
+		
+		public static bool AcessoNegado
 		{
-            LinkedList<string> listaDeArquivos = new LinkedList<string>();
+			get{	return acessonegado; }
+			set{	acessonegado = value; }
+		}
+		
+		
+        // Método que recebe um diretório como argumento e busca todos os arquivos
+        // contidos nesse diretório e em seus subdiretórios de maneira recursiva. Caso o argumento "subs" seja falso,
+		// a busca não é feita em subdiretórios
+        public static LinstaLigada<string> ObtemArquivos(string diretorio, bool subs)
+		{
+            LinstaLigada<string> listaDeArquivos = new LinstaLigada<string>();		// Cria lista
             try
             {
-				if(!Directory.Exists(diretorio))
+				if(!Directory.Exists(diretorio))									// Verifica se o diretório existe
 				{
 					throw new ExcecaoDeDiretorio();
 				}
-				if(subs == true)													// Se a procura em subdiretórios e verdadeira
+				if(subs == true)													// Se a procura em subdiretórios é verdadeira
 				{
 					string[] subDiretorios = Directory.GetDirectories(diretorio);  	// Obtém os subdiretórios
 					string[] arquivos = Directory.GetFiles(diretorio);             	// Obtém os arquivos do diretório atual 
+					
+					// Percorrendo subdiretórios
 					if (subDiretorios != null)
 					{
 						// Laço que percorre o vetor de subdiretórios e obtém os arquivos desses subdiretórios
 						for (int i = 0; i < subDiretorios.Length; i++)
-							listaDeArquivos.AddList(ObtemArquivos(subDiretorios[i], subs));	// Adiciona a lista de arquivos recebida na chamada do método e concatena com a lista atual
+							listaDeArquivos.AdicionaLista(ObtemArquivos(subDiretorios[i], subs));	// Concatena com a lista obtida na chamada do método à lista atual
 
-						listaDeArquivos.AddList(List.ConvertToList(arquivos));          	// Converte o vetor de arquivos numa lista e adiciona à lista já existente de arquivos
+						listaDeArquivos.AdicionaLista(Lista.ConverteEmLista(arquivos));          	// Converte o vetor de arquivos numa lista e adiciona à lista já existente de arquivos
 					}
 					else
 					{
-						listaDeArquivos = List.ConvertToList(arquivos);          	// Converte o vetor de arquivos numa lista de arquivos
+						listaDeArquivos = Lista.ConverteEmLista(arquivos);         	// Converte o vetor de arquivos numa lista de arquivos
 					}
 				}
 				else
 				{
 					string[] arquivos = Directory.GetFiles(diretorio);            	// Obtém os arquivos do diretório atual 
-					listaDeArquivos = List.ConvertToList(arquivos);                 // Converte o vetor de arquivos numa lista de arquivos
+					listaDeArquivos = Lista.ConverteEmLista(arquivos);             	// Converte o vetor de arquivos numa lista de arquivos
 				}
 				return listaDeArquivos;                                   			// Retorna a lista
             }
             catch (UnauthorizedAccessException excGetDir)                          	// Exceção causada por erro na tentativa de acessar um diretório
             {
-                throw new ExcecaoDeAcesso();
+                AcessoNegado = true;
             }
-            catch (IOException exc)                                                	// Exceção causada por nome de diretório muito longo
+            catch (IOException exc)                                                	// Exceção causada por erro de arquivo
             {
                 throw new ExcecaoDeArquivo();
             }
@@ -56,17 +67,17 @@ namespace arquivos
         }
 	
 		// Método que recebe um arquivo a ser procurado e a lista de caminhos de arquivos
-		public static LinkedList<string> BuscaArquivos(string arquivoProcurado, LinkedList<string> lista)
+		public static LinstaLigada<string> BuscaArquivos(string arquivoProcurado, LinstaLigada<string> lista)
 		{
 			string caminhoDoArquivo;
-			LinkedList<string> arquivos = new LinkedList<string>();
-			for(int i = 0; i < lista.Length(); i++)                   	// Laço que percorre toda a lista em busca da ocorrencia no nome de arquivo procurado
+			LinstaLigada<string> arquivos = new LinstaLigada<string>();
+			for(int i = 0; i < lista.Tamanho(); i++)                   	// Laço que percorre toda a lista em busca da ocorrência do nome de arquivo procurado
 			{
-				caminhoDoArquivo = lista.GetItemIn(i);
+				caminhoDoArquivo = lista.ItemEm(i);
 				if (caminhoDoArquivo.Contains(arquivoProcurado))      	// Cada caminho que contém o arquivo procurado é inserido na lista
-					arquivos.Add(caminhoDoArquivo);
+					arquivos.Adiciona(caminhoDoArquivo);
 			}
-			return arquivos;                                            // Retorna a lista com os caminhos que contém o arquivo
+			return arquivos;                                            // Retorna a lista com os caminhos que contém o arquivo ou uma lista vazia
 		}
 	}
 }
