@@ -15,12 +15,15 @@ Dentro da pasta do programa compile o programa executando o seguinte comando.
 > dotnet build
 
 ## Instalação
-...
+
+A instalação é feita manualmente copiando os arquivos executáveis gerados, que estão
+no diretório \bin\Debug\net6.0, para um diretório de instalação local e adicionando o caminho
+do diretório de instalação à variável de ambiente PATH.
+
 ## Versão
 
 v2.0.0
 
 ## Autor
 
-Elielson de Oliveira
-elielsonoliveira1@outlook.com
+Elielson de Oliveira - email: elielsonoliveira1@outlook.com
